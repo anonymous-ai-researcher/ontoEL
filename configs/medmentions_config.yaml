@@ -1,0 +1,48 @@
+# OntoEL MedMentions ST21pv Configuration
+# Full experiment configuration matching paper settings
+
+_base_: "default_config.yaml"
+
+# Model matches paper exactly
+model:
+  encoder_name: "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+  hidden_dim: 768
+  projection_dim: 768
+
+# Paper hyperparameters
+fuzzy_logic:
+  sigmoid_sharpness: 10
+
+fusion:
+  alpha: 0.8
+
+training:
+  learning_rate: 2.0e-5
+  batch_size: 64
+  num_epochs: 10
+  warmup_ratio: 0.1
+
+loss:
+  margin: 0.2
+  type_loss_weight: 0.5
+  num_hard_negatives: 15
+
+retrieval:
+  top_k: 64
+
+# MedMentions ST21pv has 21 semantic types
+semantic_types:
+  num_types: 21
+  use_semantic_groups: true
+
+paths:
+  data_dir: "data/medmentions"
+  output_dir: "checkpoints/medmentions"
+  train_file: "data/medmentions/train.jsonl"
+  dev_file: "data/medmentions/dev.jsonl"
+  test_file: "data/medmentions/test.jsonl"
+  entities_file: "data/medmentions/entities.jsonl"
+  type_hierarchy_file: "data/medmentions/type_hierarchy.json"
+
+device: "cuda"
+num_workers: 4

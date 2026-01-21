@@ -1,0 +1,38 @@
+# OntoEL Sample Data Configuration
+# For quick testing and development
+
+# Inherit from default config
+_base_: "default_config.yaml"
+
+# Override for sample data
+model:
+  encoder_name: "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+
+training:
+  batch_size: 8
+  num_epochs: 3
+  eval_steps: 50
+  save_steps: 100
+  logging_steps: 10
+
+loss:
+  num_hard_negatives: 5
+
+retrieval:
+  top_k: 32
+
+semantic_types:
+  num_types: 5  # Sample has 5 types
+
+paths:
+  data_dir: "data/sample"
+  output_dir: "checkpoints/sample"
+  train_file: "data/sample/train.jsonl"
+  dev_file: "data/sample/dev.jsonl"
+  test_file: "data/sample/test.jsonl"
+  entities_file: "data/sample/entities.jsonl"
+  type_hierarchy_file: "data/sample/type_hierarchy.json"
+
+# Fast testing
+device: "cpu"  # Change to "cuda" if GPU available
+num_workers: 0

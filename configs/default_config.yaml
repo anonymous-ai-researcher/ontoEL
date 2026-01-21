@@ -1,0 +1,138 @@
+# OntoEL Default Configuration
+# All hyperparameters from the paper with recommended values
+
+# Model Configuration
+model:
+  encoder_name: "cambridgeltl/SapBERT-from-PubMedBERT-fulltext"
+  hidden_dim: 768
+  projection_dim: 768
+  freeze_encoder: false
+  # Temperature for type inference, initialized as exp(log(sqrt(d')))
+  temperature_init: 3.32  # log(sqrt(768)) ≈ 3.32
+  learnable_temperature: true
+
+# Fuzzy Logic Configuration
+fuzzy_logic:
+  # Sigmoidal Reichenbach implication sharpness (s parameter)
+  sigmoid_sharpness: 10
+  # Use log-space computation for numerical stability
+  use_log_space: true
+  # T-norm: "product" (recommended) or "godel" or "lukasiewicz"
+  tnorm: "product"
+
+# Score Fusion Configuration
+fusion:
+  # Balance between neural (α) and ontological (1-α) scores
+  alpha: 0.8
+  # Whether to learn alpha during training
+  learnable_alpha: false
+  # Normalize neural scores to [0, 1]
+  normalize_neural: true
+
+# Training Configuration
+training:
+  # Optimization
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 1.0
+  
+  # Learning rate scheduler
+  scheduler: "linear"  # linear, cosine, constant
+  warmup_ratio: 0.1
+  
+  # Batch settings
+  batch_size: 64
+  gradient_accumulation_steps: 1
+  
+  # Training duration
+  num_epochs: 10
+  eval_steps: 500
+  save_steps: 1000
+  logging_steps: 100
+  
+  # Early stopping
+  early_stopping: true
+  patience: 3
+  
+  # Mixed precision
+  fp16: false
+  bf16: false
+
+# Loss Configuration
+loss:
+  # Margin for ranking loss (γ)
+  margin: 0.2
+  # Weight for type prediction loss (λ)
+  type_loss_weight: 0.5
+  # Use hard negatives from retrieval
+  use_hard_negatives: true
+  # Number of hard negatives per sample
+  num_hard_negatives: 15
+  # Number of in-batch negatives
+  num_in_batch_negatives: -1  # -1 means use all
+
+# Retrieval Configuration
+retrieval:
+  # Number of candidates to retrieve
+  top_k: 64
+  # FAISS index type: "flat", "ivf", "hnsw"
+  index_type: "flat"
+  # For IVF index
+  nlist: 100
+  nprobe: 10
+  # Precompute entity embeddings
+  precompute_embeddings: true
+  # Cache retrieval results
+  cache_retrieval: true
+
+# Data Configuration
+data:
+  # Maximum sequence length for encoder
+  max_seq_length: 128
+  # Context window (tokens before and after mention)
+  context_window: 64
+  # Include synonyms in entity representation
+  include_synonyms: true
+  # Maximum synonyms per entity
+  max_synonyms: 5
+
+# Evaluation Configuration
+evaluation:
+  # Metrics to compute
+  metrics:
+    - "accuracy@1"
+    - "accuracy@5"
+    - "mrr"
+    - "recall@64"
+  # Evaluate on ambiguous subset
+  eval_ambiguous_subset: true
+
+# Semantic Types Configuration
+semantic_types:
+  # Number of semantic types (dataset dependent)
+  # MedMentions ST21pv: 21
+  # BC5CDR: 2 (Chemical, Disease)
+  # NCBI-Disease: 1 (Disease)
+  num_types: 21
+  # Use semantic groups instead of fine-grained types
+  use_semantic_groups: true
+  # Precompute type memberships for entities
+  precompute_type_memberships: true
+
+# Paths (override in dataset-specific configs)
+paths:
+  data_dir: "data/processed"
+  output_dir: "checkpoints"
+  cache_dir: ".cache"
+  log_dir: "logs"
+
+# Reproducibility
+seed: 42
+deterministic: false
+
+# Hardware
+device: "cuda"  # cuda, cpu, mps
+num_workers: 4

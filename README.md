@@ -13,8 +13,7 @@
   <a href="#-installation">Installation</a> •
   <a href="#-quick-start">Quick Start</a> •
   <a href="#-architecture">Architecture</a> •
-  <a href="#-results">Results</a> •
-  <a href="#-citation">Citation</a>
+  <a href="#-results">Results</a> 
 </p>
 
 <p align="center">
@@ -392,24 +391,6 @@ Axioms Removed    Accuracy
      80%          83.8%  (still +1.5% over baseline!)
 ```
 
----
-
-## 📖 Citation
-
-If you find OntoEL useful in your research, please cite our paper:
-
-```bibtex
-@inproceedings{zhao2026ontoel,
-  title     = {OntoEL: Neuro-Symbolic Biomedical Entity Linking with 
-               Differentiable Fuzzy EL++ Reasoning},
-  author    = {Zhao, Yizheng},
-  booktitle = {Proceedings of the 49th International ACM SIGIR Conference 
-               on Research and Development in Information Retrieval},
-  year      = {2026},
-  publisher = {ACM},
-  address   = {New York, NY, USA}
-}
-```
 
 ---
 

@@ -38,7 +38,11 @@
 
 ## 📢 Important Note to Reviewers
 
-This repository accompanies our submission and includes a **comprehensive 10-section appendix** with:
+This repository accompanies our SIGIR 2026 submission. **Please refer to the extended version:**
+
+<h3 align="center">📄 <code>SIGIR2026-id484-Extended with Appendix.pdf</code></h3>
+
+This document includes a **comprehensive 10-section appendix** with:
 
 ✅ **Complete theoretical proofs** for all theorems (Gradient Non-Degeneracy, Semantic Soundness)  
 ✅ **Zero-shot generalization bounds** with 7 lemmas establishing Lipschitz continuity  
@@ -48,7 +52,7 @@ This repository accompanies our submission and includes a **comprehensive 10-sec
 ✅ **Detailed error analysis** with taxonomy and case studies  
 
 <p align="center">
-  <b>👉 Please see <a href="#-extended-appendix">Section: 📚 Extended Appendix</a> for the complete structure and key findings.</b>
+  <b>👉 See <a href="#-extended-appendix">Section: 📚 Extended Appendix</a> below for the complete structure and key findings.</b>
 </p>
 
 </td>
@@ -114,7 +118,9 @@ This repository accompanies our submission and includes a **comprehensive 10-sec
 
 ## 📚 Extended Appendix
 
-> **The extended version contains 10 appendix sections that provide comprehensive theoretical foundations, ablation studies, and detailed analyses supporting all claims in the main paper.**
+> **📄 File: `SIGIR2026-id484-Extended with Appendix.pdf`**
+>
+> The extended version contains 10 appendix sections that provide comprehensive theoretical foundations, ablation studies, and detailed analyses supporting all claims in the main paper.
 
 ### 📖 Complete Appendix Structure
 
@@ -138,7 +144,7 @@ This repository accompanies our submission and includes a **comprehensive 10-sec
 <td align="center"><b>B</b></td>
 <td>Complexity Analysis</td>
 <td>Formal analysis of Proposition 1 (Inference Efficiency)</td>
-<td>Logic module adds <5% latency (~4ms overhead)</td>
+<td>Logic module adds &lt;5% latency (~4ms overhead)</td>
 </tr>
 <tr>
 <td align="center"><b>C</b></td>
@@ -314,7 +320,6 @@ Comprehensive ablation on MedMentions ST21pv with SapBERT backbone:
 ```
 
 **Key Findings:**
-
 - α ≈ 0.8 implies SNR<sub>neural</sub> / SNR<sub>onto</sub> ≈ 4:1
 - Performance plateau in [0.6, 0.9] due to score correlation
 - Linear fusion outperforms max/product/MLP alternatives
